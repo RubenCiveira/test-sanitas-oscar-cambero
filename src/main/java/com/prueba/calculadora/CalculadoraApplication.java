@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan(basePackages = "com.calculadora")
+@ComponentScan(basePackages = "com.prueba.calculadora")
 @EnableAutoConfiguration
 public class CalculadoraApplication {
 
