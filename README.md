@@ -32,7 +32,7 @@ Si la operación no existe devuelve un error controlado indicando que la operaci
 
 
 Distintas maneras de realizar una prueba: 
-1. Swagger: http://localhost:8080/swagger-ui.html#/calculadora-controller.
+1. Swagger: http://localhost:8080/swagger-ui/index.html
 2. Request URL: http://localhost:8080/rest/calculadora/operaciones?numeroDos=100&numeroUno=100&operacion=%2B.
 3. Curl: curl -X GET "http://localhost:8080/rest/calculadora/operaciones?numeroDos=100&numeroUno=100&operacion=%2B" -H "accept: */*".
 

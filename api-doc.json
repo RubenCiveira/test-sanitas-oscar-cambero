@@ -1,52 +1,52 @@
-swagger: '2.0'
+openapi: 3.0.1
 info:
+  title: Calcualdora - Open Api 3.0
   description: 'Interfaz Servicio CalculadoraRest: realizar operaciones de una calculadora'
-  title: 'Documentación Swagger Calculadora Rest '
   version: 1.0.0
-host: localhost:8080
-basePath: /
-tags:
-  - name: calculadora-controller
-    description: Calculadora Controller
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
 paths:
-  /rest/calculadora/operacion:
+  /rest/calculadora/operaciones:
     get:
       tags:
         - calculadora-controller
-      summary: operacion
-      operationId: operacionUsingGET
-      produces:
-        - '*/*'
+      summary: operaciones de una calculadora
+      description: operaciones de una calculadora (suma/resta)
+      operationId: operacion
       parameters:
-        - name: numeroDos
-          in: query
-          description: Segundo número
-          required: true
-          type: number
-          allowEmptyValue: false
-          x-example: 100
         - name: numeroUno
+          description: Primer operando de la operación
           in: query
-          description: Primer número
           required: true
-          type: number
-          allowEmptyValue: false
-          x-example: 100
-        - name: operacion
-          in: query
-          description: Operacion
-          required: true
-          type: string
-          allowEmptyValue: false
-      responses:
-        '200':
-          description: OK
           schema:
             type: number
+          x-example: 100
+        - name: numeroDos
+          description: Segundo operando de la operación
+          in: query
+          required: true
+          schema:
+            type: number
+          x-example: 100
+        - name: operacion
+          description: Operación a realizar con los operandos
+          in: query
+          required: true
+          schema:
+            type: string
+          x-example: "SUMA,RESTA,+,-"
+      responses:
+        '200':
+          description: OK - Resultado de la operación.
+          content:
+            '*/*':
+              schema:
+                type: number
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
         '404':
           description: Not Found
-      deprecated: false
+components: {}
