@@ -39,7 +39,7 @@ public class CalculadoraController {
 	}
 
 	/**
-	 * Endpoint /operacion método GET.
+	 * Endpoint /operaciones método GET.
 	 * 
 	 * @param numeroUno.
 	 * @param numeroDos.
@@ -53,10 +53,10 @@ public class CalculadoraController {
 			@RequestParam(value = "operacion", required = true) @ApiParam(value = "Operacion", required = true) String operacion)
 			throws ExceptionCalculadora {
 
-		tracer.trace(String.format("INI GET >>> /operacion | RequestParam numeroUno %s, numeroDos %s, operacion %s",
+		tracer.trace(String.format("INI GET >>> /operaciones | RequestParam numeroUno %s, numeroDos %s, operacion %s",
 				numeroUno, numeroDos, operacion));
 		BigDecimal resultado = serviceCalculadora.operar(numeroUno, numeroDos, operacion);
-		tracer.trace(String.format("FIN GET >>> /operacion |  resultado %1$,.2f", resultado));
+		tracer.trace(String.format("FIN GET >>> /operaciones |  resultado %1$,.2f", resultado));
 
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}

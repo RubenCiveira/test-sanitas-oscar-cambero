@@ -2,16 +2,15 @@ package com.prueba.calculadora;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Clase principal.
  *
  */
 
-@Configuration
-@ComponentScan(basePackages = "com.prueba.calculadora")
+
+@SpringBootApplication
 @EnableAutoConfiguration
 public class CalculadoraApplication {
 
