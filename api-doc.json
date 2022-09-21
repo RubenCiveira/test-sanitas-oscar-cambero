@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  description: 'Interfaz Servicio CalculadoraRest: realizar operaciones de una calculadora'
+  title: 'Documentación Swagger Calculadora Rest '
+  version: 1.0.0
+host: localhost:8080
+basePath: /
+tags:
+  - name: calculadora-controller
+    description: Calculadora Controller
+paths:
+  /rest/calculadora/operacion:
+    get:
+      tags:
+        - calculadora-controller
+      summary: operacion
+      operationId: operacionUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: numeroDos
+          in: query
+          description: Segundo número
+          required: true
+          type: number
+          allowEmptyValue: false
+          x-example: 100
+        - name: numeroUno
+          in: query
+          description: Primer número
+          required: true
+          type: number
+          allowEmptyValue: false
+          x-example: 100
+        - name: operacion
+          in: query
+          description: Operacion
+          required: true
+          type: string
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: number
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
