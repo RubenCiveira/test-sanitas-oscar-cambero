@@ -1,4 +1,4 @@
-package com.prueba.calculadora.exception;
+package com.test.calculator.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,16 +13,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.prueba.calculadora.CalculadoraApplication;
-import com.prueba.calculadora.service.ServiceCalculadora;
+import com.test.calculator.CalculatorApplication;
+import com.test.calculator.service.ServiceCalculator;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = CalculadoraApplication.class)
+@SpringBootTest(classes = CalculatorApplication.class)
 
 public class ExceptionTest {
 
 	@Autowired
-	ServiceCalculadora serviceCalculadora;
+	ServiceCalculator serviceCalculator;
 
 
     private final GlobalExceptionHandler handler = new GlobalExceptionHandler();
@@ -30,20 +30,20 @@ public class ExceptionTest {
 	@Test
 	void testExceptionCalculadora1() {
 
-		Assertions.assertThrows(ExceptionCalculadora.class, () -> {
+		Assertions.assertThrows(ExceptionCalculator.class, () -> {
 			BigDecimal bd1 = new BigDecimal(1);
 			BigDecimal bd2 = new BigDecimal(1);
-			serviceCalculadora.operar(bd1, bd2, "SUM");
+			serviceCalculator.operation(bd1, bd2, "AD");
 		});
 	}
 
 	@Test
-	void testExceptionCalculadora2() throws ExceptionCalculadora {
+	void testExceptionCalculadora2() throws ExceptionCalculator {
 
-		Assertions.assertThrows(ExceptionCalculadora.class, () -> {
+		Assertions.assertThrows(ExceptionCalculator.class, () -> {
 			BigDecimal bd1 = new BigDecimal(1);
 			BigDecimal bd2 = new BigDecimal(1);
-			serviceCalculadora.operar(bd1, bd2, "/");
+			serviceCalculator.operation(bd1, bd2, "/");
 		});
 	}
 

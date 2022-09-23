@@ -1,4 +1,4 @@
-package com.prueba.calculadora.controller;
+package com.test.calculator.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,26 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.prueba.calculadora.CalculadoraApplication;
-import com.prueba.calculadora.service.ServiceCalculadora;
-import com.prueba.calculadora.service.impl.ImplServiceCalculadora;
+import com.test.calculator.CalculatorApplication;
+import com.test.calculator.service.ServiceCalculator;
+import com.test.calculator.service.impl.ServiceCalculatorImpl;
 
-@ComponentScan(basePackages = "com.prueba.calculadora")
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = { CalculadoraApplication.class, ImplServiceCalculadora.class })
+@ContextConfiguration(classes = { CalculatorApplication.class, ServiceCalculatorImpl.class })
 @WebMvcTest
-public class ControllerTest {
+public class CalculatorControllerTest {
 
 	@MockBean
-	ServiceCalculadora serviceCalculadora;
+	ServiceCalculator serviceCalculator;
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -40,10 +37,11 @@ public class ControllerTest {
 		BigDecimal bd1 = new BigDecimal(2);
 		BigDecimal bd2 = new BigDecimal(2);
 
-		Mockito.when(serviceCalculadora.operar(bd1, bd2, "+")).thenReturn(new BigDecimal(4));
+		Mockito.when(serviceCalculator.operation(bd1, bd2, "add")).thenReturn(new BigDecimal(4));
 
 		MvcResult result = mockMvc
-				.perform(MockMvcRequestBuilders.get("/rest/calculadora/operaciones?numeroDos=2&numeroUno=2&operacion=+"))
+				.perform(
+						MockMvcRequestBuilders.get("/rest/calculator/operations?numberTwo=2&numberOne=2&operation=add"))
 				.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
 		String decimal = result.getResponse().getContentAsString();

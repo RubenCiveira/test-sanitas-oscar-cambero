@@ -1,4 +1,4 @@
-package com.prueba.calculadora.exception;
+package com.test.calculator.exception;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * Manejador de excepciones.
+ * Exception handler.
  * 
  *
  */
-@RestControllerAdvice(basePackages = { "com.iteriam.calculadora.controller" })
+@RestControllerAdvice(basePackages = { "com.test.calculator.controller" })
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(NumberFormatException.class)
 	public final ResponseEntity<Object> handleNumberFormatException(NumberFormatException ex) {
 
 		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("message", "Formato incorrecto de número");
+		body.put("message", "Wrong number format");
 		return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ExceptionHandler(ExceptionCalculadora.class)
-	public final ResponseEntity<Object> handleExceptionCalculadora(ExceptionCalculadora ex) {
+	@ExceptionHandler(ExceptionCalculator.class)
+	public final ResponseEntity<Object> handleExceptionCalculadora(ExceptionCalculator ex) {
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("message", ex.getMessage());
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);

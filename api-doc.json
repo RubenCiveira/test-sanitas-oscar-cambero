@@ -1,52 +1,63 @@
 openapi: 3.0.1
 info:
-  title: Calcualdora - Open Api 3.0
-  description: 'Interfaz Servicio CalculadoraRest: realizar operaciones de una calculadora'
+  title: OpenAPI definition
   version: 1.0.0
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8080/calculator
     description: Generated server url
 paths:
-  /rest/calculadora/operaciones:
+  /rest/calculator/operations:
     get:
       tags:
         - calculadora-controller
-      summary: operaciones de una calculadora
-      description: operaciones de una calculadora (suma/resta)
-      operationId: operacion
+      summary: operations of a calculator
+      description: calculator operations (addition/subtraction)
+      operationId: operations
       parameters:
-        - name: numeroUno
-          description: Primer operando de la operación
+        - name: numberOne
           in: query
+          description: First operand of the operation
           required: true
           schema:
             type: number
-          x-example: 100
-        - name: numeroDos
-          description: Segundo operando de la operación
+          example: 100
+        - name: numberTwo
           in: query
+          description: Second operand of the operationn
           required: true
           schema:
             type: number
-          x-example: 100
-        - name: operacion
-          description: Operación a realizar con los operandos
+          example: 100
+        - name: operation
           in: query
+          description: Operation to perform with the operands
           required: true
           schema:
             type: string
-          x-example: "SUMA,RESTA,+,-"
+          example: ADD,SUB,+,-
       responses:
         '200':
-          description: OK - Resultado de la operación.
+          description: OK - Result of the operation.
           content:
-            '*/*':
+            application/json:
               schema:
                 type: number
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: number
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: number
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                type: number
 components: {}
